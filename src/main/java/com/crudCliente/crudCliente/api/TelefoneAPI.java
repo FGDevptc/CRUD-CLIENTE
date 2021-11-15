@@ -32,38 +32,6 @@ public class TelefoneAPI {
 	private TelefoneDAO dao;
 	
 	
-	
-	@GetMapping
-	public ResponseEntity<List<Telefone>> ListarTelefones(@RequestParam(value = "cliente", defaultValue = "0") Integer cliente_id){
-		List<Telefone> telefones = dao.findAll(cliente_id);
-		return ResponseEntity.ok().body(telefones);
-		
-	}
-	
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<Telefone> buscapeloID(@PathVariable Integer id){
-		Telefone telefone = dao.findById(id);
-		return ResponseEntity.ok().body(telefone);
-	}
-	
-	@PostMapping
-	public ResponseEntity<List<Telefone>> inserirTelefone(@RequestParam(value = "cliente", defaultValue = "0") Integer cliente_id, @Valid @RequestBody List<Telefone> telefones){
-		telefones = dao.create(cliente_id, telefones);
-		return ResponseEntity.ok().body(telefones);
-	}
-	
-	@PutMapping(value = "/{id}")
-	public ResponseEntity<Telefone> atualizarTelefone(@PathVariable Integer id, @Valid @RequestBody Telefone telefone){
-		Telefone newTelefone = dao.update(id, telefone);
-		return ResponseEntity.ok().body(newTelefone);
-	}
-	
-	@PatchMapping(value = "/{id}")
-	public ResponseEntity<Telefone> atualizarItemTelefone(@PathVariable Integer id,@Valid @RequestBody Telefone telefone){
-		Telefone newTelefone = dao.update(id, telefone);
-		return ResponseEntity.ok().body(newTelefone);
-	}
-	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> excluirTelefone(@PathVariable Integer id){
 		dao.delete(id);

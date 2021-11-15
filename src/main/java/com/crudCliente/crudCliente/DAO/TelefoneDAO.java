@@ -16,39 +16,11 @@ public class TelefoneDAO {
 	@Autowired
 	TelefoneRepository repository;
 	
-	@Autowired
-	ClienteDAO cDAO;
 	
-	public List<Telefone> findAll(Integer cliente_id){
-		cDAO.findById(cliente_id);
-		return repository.findAllByClientes(cliente_id);
-	}
-	
-	public Telefone findById(Integer id) {
-		Optional<Telefone> telefones = this.repository.findById(id);
-		return telefones.orElse(null);
-	}
-	
-	public List<Telefone> create(Integer cliente_id, List<Telefone> telefones) {
-		Cliente cliente = cDAO.findById(cliente_id);
-		for(Telefone telefone: telefones) {
-			telefone.setCliente(cliente);
-			telefone = this.repository.save(telefone);
-		}
-		
-		return telefones;
-	}
-
-
-	public Telefone update(Integer id, Telefone telefone) {
-		Telefone obj = findById(id);
-		obj.setNumeroTelefone(telefone.getNumeroTelefone());
-		return repository.save(obj);
-	}
-
+	//Metódo implementado para fazer a exclusão de um número se for do desejo do usuário
 	public void delete(Integer id) {
-		findById(id);
-		repository.deleteById(id);
+		repository.findById(id);//verificamos se já existe um objeto, a final para exluir é necessário existir, se não existir a função retornará um exception e parará a execução
+		repository.deleteById(id);//aqui exluimos o telefone da base.
 		
 	}
 

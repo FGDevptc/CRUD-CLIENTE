@@ -3,17 +3,18 @@ package com.crudCliente.crudCliente.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Currency;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,6 +30,7 @@ public class Telefone implements Serializable {
 	
 	@NotEmpty(message = "Parace que não há um telefone cadastrado!")
 	@NotNull(message = "O valor do Telefone não pode ser null!")
+	@Column(unique = true)//valida a não iserção do mesmo número 2 vezes no sistema
 	private String numeroTelefone;
 	
 	@JsonIgnore

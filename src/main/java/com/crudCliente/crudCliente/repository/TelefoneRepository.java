@@ -14,5 +14,8 @@ public interface TelefoneRepository  extends JpaRepository<Telefone, Integer> {
 	
 	@Query("SELECT obj FROM Telefone obj WHERE obj.cliente.id = :cliente_id")
 	List<Telefone> findAllByClientes(@Param(value = "cliente_id") Integer cliente_id);
+	
+	@Query("SELECT tel FROM Telefone tel WHERE tel.numeroTelefone = ?1")
+	List<Telefone> findAllByTelefone(String numeroTelefone);
 
 }

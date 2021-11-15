@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -51,6 +52,7 @@ public class ClienteAPI {
 	@PostMapping
 	public ResponseEntity<Cliente> inserirCliente(@Valid @RequestBody Cliente cliente){
 		cliente = dao.create(cliente);
+		if(cliente == null) return ResponseEntity.status(500).build();
 		URI uri= ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getId()).toUri();
 		return ResponseEntity.created(uri).body(cliente);
 	}
@@ -58,6 +60,7 @@ public class ClienteAPI {
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Cliente> atualizarCliente(@PathVariable Integer id,@Valid @RequestBody Cliente cliente){
 		Cliente newCliente = dao.update(id, cliente);
+		if(newCliente == null) return ResponseEntity.status(500).build();
 		return ResponseEntity.ok().body(newCliente);
 	}
 	
