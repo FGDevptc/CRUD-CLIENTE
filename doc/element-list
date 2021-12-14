@@ -1,1 +1,6 @@
 com.crudCliente.crudCliente
+com.crudCliente.crudCliente.api
+com.crudCliente.crudCliente.DAO
+com.crudCliente.crudCliente.model
+com.crudCliente.crudCliente.repository
+com.crudCliente.crudCliente.validation

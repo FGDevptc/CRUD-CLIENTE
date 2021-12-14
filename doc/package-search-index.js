@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.crudCliente.crudCliente"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.crudCliente.crudCliente.api"},{"l":"com.crudCliente.crudCliente.DAO"},{"l":"com.crudCliente.crudCliente.model"},{"l":"com.crudCliente.crudCliente.repository"},{"l":"com.crudCliente.crudCliente.validation"}]
