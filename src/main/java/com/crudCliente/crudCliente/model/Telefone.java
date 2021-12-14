@@ -18,21 +18,39 @@ import org.hibernate.validator.constraints.Currency;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * @author Felipe
+ * @since Nov 2021
+ * @version 1.0
+ * Classe responsável por modelar os Contatos do Cliente
+ *
+ */
 @Entity
 public class Telefone implements Serializable {
 	
 	
 	private static final long serialVersionUID = 1L;
 	
+	
+	/**
+	 * Chave primária do objeto Telefone, com geração automática e auto incremento.
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	
+	/**
+	 * Atributo responsável por armazenar um dos número de telefone do Cliente.
+	 */
 	@NotEmpty(message = "Parace que não há um telefone cadastrado!")
 	@NotNull(message = "O valor do Telefone não pode ser null!")
 	@Column(unique = true)//valida a não iserção do mesmo número 2 vezes no sistema
 	private String numeroTelefone;
 	
+	/**
+	 * Atributo responsável por armazenar a quem pertence o contato.
+	 */
 	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "cliente_id")
@@ -40,7 +58,12 @@ public class Telefone implements Serializable {
 	
 	
 	
-
+	/**
+	 * Construtor do Telefone.
+	 * @param id atributo do tipo inteiro, identifica a chave primaria
+	 * @param numeroTelefone atributo do tipo String, identifica os núemros de telefones
+	 * @param cliente atributo do tipo Cliente, identifica o Cliente dono do Telefone.
+	 */
 	public Telefone(Integer id,String numeroTelefone, Cliente cliente) {
 		super();
 		this.id = id;

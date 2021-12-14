@@ -17,6 +17,13 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 
+/**
+ * @author Felipe
+ * @since Nov 2021
+ * @version 1.0
+ * Classe responsável por modelar o objeto do Cliente
+ *
+ */
 @Entity
 public class Cliente implements Serializable {
 	
@@ -24,20 +31,37 @@ public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
+	/**
+	 * Chave primária do objeto Cliente, com geração automática e auto incremento.
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	
+	/**
+	 * Atributo responsável por armazenar o nome do Cliente.
+	 */
 	@NotEmpty(message = "O campo nome não pode ser vazio!")
 	@Length(min = 10, message = "O campo nome deve ter pelo menos 10 caracteres!")
 	private String nome;
 	
+	
+	/**
+	 * Atributo responsável por armazenar o Endereço do Cliente.
+	 */
 	@NotEmpty(message = "O campo endereço não pode ser vazio!")
 	private String endereco;
 	
+	/**
+	 * Atributo responsável por armazenar o bairro do Cliente.
+	 */
 	@NotEmpty(message = "O campo bairro não pode ser vazio!")
 	private String bairro;
 	
+	/**
+	 * Atributo por retornar e armazenar todos os contatos do Cliente.
+	 */
 	@OneToMany(mappedBy = "cliente", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	List<Telefone> telefones;
 	
